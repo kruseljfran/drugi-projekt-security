@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Komentari (XSS Stored)</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Komentari (XSS Stored)</h2>
+    <p>XSS ranjivost: <span class="<%= xssvuln ? 'vulnerable' : 'secure' %>"><%= xssvuln ? 'ON' : 'OFF' %></span></p>
+
+    <form method="post" action="/comments">
+      <label>Korisničko ime: <input name="author" value="<%= user %>"></label><br>
+      <label>Komentar:</label><br>
+      <textarea name="text" rows="4" cols="40"></textarea><br>
+      <button>Objavi</button>
+    </form>
+
+    <h3>Svi komentari</h3>
+    <ul>
+      <% comments.forEach(c => { %>
+        <li>
+          <strong><%= c.author %>:</strong>
+          <% if (xssvuln) { %>
+            <!-- ranjivost -->
+            <div><%- c.text %></div>
+          <% } else { %>
+            <!-- siguran -->
+            <div><%= c.text %></div>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+
+    <p><a href="/">Back</a></p>
+  </div>
+</body>
+</html>

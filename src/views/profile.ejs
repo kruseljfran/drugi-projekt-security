@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Profile</title><link rel="stylesheet" href="/styles.css"></head><body>
+  <div class="container">
+    <h2>Profil</h2>
+    <p>Korisnik: <%= user %></p>
+    <p>e-mail: <%= email %></p>
+    <p>CSRF ranjivost: <span class="<%= csrfvuln ? 'vulnerable' : 'secure' %>"><%= csrfvuln ? 'ON' : 'OFF' %></span></p>
+
+    <form method="post" action="/change-email">
+      <label>Novi mail: <input name="email" type="email"></label><br>
+      <% if (!csrfvuln) { %>
+        <input type="hidden" name="csrfToken" value="<%= csrfToken %>">
+      <% } %>
+      <button>Promjeni e-mail</button>
+    </form>
+
+    <p><a href="/">Natrag</a></p>
+  </div>
+</body></html>

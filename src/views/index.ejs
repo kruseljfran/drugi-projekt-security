@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="/styles.css">
+  <meta charset="utf-8"><title>Drugi projekt Security</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Drugi projekt Security</h1>
+
+    <form method="post" action="/toggle" class="toggles">
+      <label><input type="checkbox" name="xssvuln" <%= xssvuln ? 'checked' : '' %> > XSS ranjivost</label><br>
+      <label><input type="checkbox" name="csrfvuln" <%= csrfvuln ? 'checked' : '' %> > CSRF ranjivost</label><br>
+      <button class="btn small" type="submit">Spremi</button>
+    </form>
+
+    <!-- divider 1 -->
+    <hr class="divider">
+
+    <ul class="actions-list">
+        <p>
+          <strong>Upute:</strong> <em>Primjer stored XSS napada. 
+          Možete upisati komentar ili upisati </em> <strong><pre>&lt;script&gt;alert('cookie: ' + document.cookie)&lt;/script&gt;</pre></strong>
+          <em> kako bih dobili cookie i izveli napad</em>
+        </p>
+      <li class="group">
+        <a class="btn small" href="/comments">Komentari (XSS napad)</a>
+        <form method="POST" action="/clear-comments" style="display:inline; margin:0;">
+          <button type="submit" class="btn small danger" title="Clear all comments">Obriši komentare</button>
+        </form>
+      </li>
+
+      <!-- divider 2 -->
+      <li><hr class="divider"></li>
+      <p>
+        <strong>Upute:</strong> <em>Primjer CSRF napada. Korisnik se prvo na "Profil"
+          stranici treba prijaviti na stranicu. Nakon toga on na toj stranici može
+          mijenjati svoj email. Napadač ruta služi kao ruta postavljenja kako
+          bi se prevarilo korisnika da napravi akcije koje ne namjerava (u ovome 
+          slučaju promjeni mail korisnika na "hacked@email.com").
+        </em>
+      </p>
+      <p><strong>
+        Koraci:
+        <li>1. Prijava na "Profil"</li>
+        <li>2. Pokretanje "Pročitaj više" napadač rute</li>
+        <li>3. Provjeriti "Profil" te vidjeti kako je e-mail promijenjen
+          iako to niste planirani napraviti
+        </li>
+      </strong></p>
+
+      <li class="plain"><a class="btn small" href="/profile">Profil (promjeni e-mail; CSRF napad)</a></li>
+      <li class="plain"><a class="btn small" href="/attacker">Pročitaj više (Napadač ruta; CSRF napad)</a></li>
+    </ul>
+  </div>
+</body>
+</html>

