@@ -20,7 +20,7 @@ declare module "express-session" {
 const app = express();
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(process.cwd(), "src", "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
@@ -173,6 +173,6 @@ app.get("/attacker", (req: Request, res: Response) => {
 
 const port = parseInt(process.env.PORT || "5000");
 app.listen(port, () => {
-  console.log(`Listening on https://drugi-projekt-security.onrender.com
+  console.log(`Listening on https://drugi-projekt-security-uvlw.onrender.com/
 `);
 });
